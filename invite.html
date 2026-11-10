@@ -7,6 +7,13 @@
 <meta name="description" content="A friend invited you to Nodely, a calm wire puzzle game. Install it and you'll be friends right away.">
 <meta property="og:title" content="You're invited to Nodely">
 <meta property="og:description" content="Install Nodely with this link and you'll be friends right away.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://braileanuolimpiu-max.github.io/nodely/img/og-invite.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://braileanuolimpiu-max.github.io/nodely/img/og-invite.png">
+<meta name="theme-color" content="#5c6bf0">
 <link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -23,28 +30,48 @@
     <circle class="halo" cx="290" cy="70" r="62"/>
     <image href="img/avatars/fox.png" x="20" y="20" width="100" height="100"/>
     <image href="img/avatars/panda.png" x="240" y="20" width="100" height="100"/>
-    <text x="70" y="146">your friend</text>
-    <text x="290" y="146">you</text>
+    <text x="70" y="146" id="lf">your friend</text>
+    <text x="290" y="146" id="ly">you</text>
   </svg>
 
-  <h1>You're invited!</h1>
-  <p>A friend wants to play <strong>Nodely</strong> with you: connect the dots, fill every square, never cross the wires.</p>
+  <h1 id="tt">You're invited!</h1>
+  <p id="tb">A friend wants to play <strong>Nodely</strong> with you: connect the dots, fill every square, never cross the wires.</p>
 
   <div id="code-wrap" hidden>
-    <p class="muted" style="margin-bottom:0">Invite code</p>
+    <p class="muted" style="margin-bottom:0" id="tc">Invite code</p>
     <div class="code" id="code"></div>
   </div>
 
   <p><a class="btn gold" id="play" href="https://play.google.com/store/apps/details?id=com.sugarsoftware.link">Get Nodely on Google Play</a></p>
 
   <ol class="steps">
-    <li>Install Nodely from this page.</li>
-    <li>Open <strong>Friends</strong> and create your free account.</li>
-    <li>You and your friend become friends right away.</li>
+    <li id="s1">Install Nodely from this page.</li>
+    <li id="s2">Open <strong>Friends</strong> and create your free account.</li>
+    <li id="s3">You and your friend become friends right away.</li>
   </ol>
   <p class="muted" id="manual" hidden>Installed another way? Add your friend's code on the Friends page.</p>
 </main>
 <footer>© 2026 Nodely · <a href="mailto:braileanuolimpiu@gmail.com">Contact</a></footer>
+<script src="invite-i18n.js"></script>
+<script>
+  // The page in the visitor's language (falls back to English).
+  (function () {
+    var langs = (navigator.languages || [navigator.language || 'en']);
+    var T = null;
+    for (var i = 0; i < langs.length && !T; i++) {
+      T = NODELY_INVITE_I18N[String(langs[i]).slice(0, 2).toLowerCase()];
+    }
+    T = T || NODELY_INVITE_I18N.en;
+    var set = function (id, v, html) { var e = document.getElementById(id); if (e && v) { if (html) e.innerHTML = v; else e.textContent = v; } };
+    set('tt', T.t); set('tb', T.b, true); set('tc', T.c); set('play', T.p);
+    set('s1', T.s1); set('s2', T.s2, true); set('s3', T.s3); set('manual', T.m);
+    set('lf', T.f); set('ly', T.y);
+    document.title = T.t + ' · Nodely';
+    var code2 = String(langs[0] || 'en').slice(0, 2).toLowerCase();
+    document.documentElement.lang = NODELY_INVITE_I18N[code2] ? code2 : 'en';
+    if (code2 === 'ar') document.documentElement.dir = 'rtl';
+  })();
+</script>
 <script>
   // The invite code (letters and digits only) travels to Google Play as the
   // install referrer; the app reads it on its first launch.

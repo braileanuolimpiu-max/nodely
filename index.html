@@ -7,6 +7,14 @@
 <meta name="description" content="Nodely is a calm wire puzzle game: connect the matching dots, fill every square, never cross the wires.">
 <meta property="og:title" content="Nodely · Connect. Fill. Relax.">
 <meta property="og:description" content="A calm wire puzzle game. Coming soon on Google Play.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://braileanuolimpiu-max.github.io/nodely/img/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://braileanuolimpiu-max.github.io/nodely/img/og-home.png">
+<meta name="theme-color" content="#5c6bf0">
+<meta property="og:url" content="https://braileanuolimpiu-max.github.io/nodely/">
 <link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -51,6 +59,18 @@
 
   <p class="soon"><span class="pill">COMING SOON ON GOOGLE PLAY</span></p>
 
+  <!-- "Tell me at launch": hidden until the public API address is set below. -->
+  <form class="notify" id="notify" hidden novalidate>
+    <p class="notify-title">Get one email when Nodely launches</p>
+    <div class="notify-row">
+      <input type="email" name="email" id="notify-email" placeholder="you@example.com" autocomplete="email" required maxlength="190" aria-label="Your email">
+      <button class="btn" type="submit">Notify me</button>
+    </div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="notify-consent"><input type="checkbox" id="notify-ok"><span>I agree to get launch news from Nodely by email. I can unsubscribe with one click. See the <a href="privacy.html">Privacy Policy</a>.</span></label>
+    <p class="notify-msg" id="notify-msg" role="status"></p>
+  </form>
+
   <div class="cast" aria-hidden="true">
     <img src="img/avatars/fox.png" alt=""><img src="img/avatars/panda.png" alt=""><img src="img/avatars/bunny.png" alt="">
     <img src="img/avatars/owl.png" alt=""><img src="img/avatars/robot.png" alt=""><img src="img/avatars/frog.png" alt="">
@@ -69,5 +89,34 @@
   <div class="links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="data-deletion.html">Delete your data</a></div>
   <p>© 2026 Nodely · <a href="mailto:braileanuolimpiu@gmail.com">Contact</a></p>
 </footer>
+<script>
+  // Public address of the Nodely API (e.g. https://api.example.com). Empty = form stays hidden.
+  var NODELY_API = '';
+  (function () {
+    var f = document.getElementById('notify');
+    if (!NODELY_API || !window.fetch) return;
+    f.hidden = false;
+    var msg = document.getElementById('notify-msg');
+    var say = function (t, bad) { msg.textContent = t; msg.className = 'notify-msg' + (bad ? ' bad' : ''); };
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('notify-email').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return say('Please enter a valid email.', true);
+      if (!document.getElementById('notify-ok').checked) return say('Please tick the box to agree first.', true);
+      var btn = f.querySelector('button'); btn.disabled = true;
+      fetch(NODELY_API.replace(/\/$/, '') + '/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email, consent: true, website: f.website.value,
+          locale: (navigator.language || 'en').slice(0, 10), source: 'site' })
+      }).then(function (r) {
+        if (r.ok) { f.reset(); say("Thanks! We'll email you once, when Nodely is out."); }
+        else if (r.status === 429) say('Too many tries. Wait a minute and try again.', true);
+        else say("That didn't work. Check the email and try again.", true);
+      }).catch(function () { say("Couldn't reach the server. Try again later.", true); })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
 </body>
 </html>
