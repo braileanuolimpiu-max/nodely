@@ -5,21 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nodely · Connect. Fill. Relax.</title>
 <meta name="description" content="Nodely is a calm wire puzzle game: connect the matching dots, fill every square, never cross the wires.">
+<meta property="og:title" content="Nodely · Connect. Fill. Relax.">
+<meta property="og:description" content="A calm wire puzzle game. Coming soon on Google Play.">
+<link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
-  <a href="index.html"><svg viewBox="0 0 1024 1024" aria-hidden="true"><path d="M287 670 511 340 736 617" fill="none" stroke="var(--accent)" stroke-width="40" stroke-linecap="round"/><g fill="var(--accent)"><circle cx="287" cy="670" r="69"/><circle cx="511" cy="340" r="69"/><circle cx="736" cy="617" r="69"/></g></svg><span>Nodely</span></a>
+  <a href="index.html"><img src="img/icon.png" alt=""><span>Nodely</span></a>
   <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
 </header>
+
 <main class="hero">
-  <svg viewBox="0 0 1024 1024" aria-hidden="true"><path d="M287 670 511 340 736 617" fill="none" stroke="var(--accent)" stroke-width="40" stroke-linecap="round"/><g fill="var(--accent)"><circle cx="287" cy="670" r="69"/><circle cx="511" cy="340" r="69"/><circle cx="736" cy="617" r="69"/></g></svg>
+  <img class="logo" src="img/icon.png" alt="Nodely">
   <h1>Nodely</h1>
-  <p>Connect the matching dots. Fill every square. Never cross the wires.</p>
-  <p class="muted">Daily puzzles · Blitz · Friend Duels · Leagues · Themes</p>
-  <p><strong>Coming soon on Google Play.</strong></p>
-  <div class="links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="data-deletion.html">Delete your data</a></div>
+  <p class="tag">Connect the matching dots. Fill every square. Never cross the wires.</p>
+
+  <!-- The game's Home menu, drawn: Play wired to Daily, Endless and More games. -->
+  <svg class="board" viewBox="0 0 440 270" role="img" aria-label="Play, Daily, Endless and More games">
+    <path class="wire" stroke="#ff7a3d" d="M220 204 H84 Q66 204 66 186 V70"/>
+    <path class="wire" stroke="#8b5cf6" d="M220 204 V70"/>
+    <path class="wire" stroke="#14b8c8" d="M220 204 H356 Q374 204 374 186 V70"/>
+    <path class="pulse" d="M220 204 H84 Q66 204 66 186 V70"/>
+    <path class="pulse b" d="M220 204 V70"/>
+    <path class="pulse c" d="M220 204 H356 Q374 204 374 186 V70"/>
+    <circle cx="66" cy="64" r="34" fill="#ff7a3d" opacity="0.22"/><circle cx="66" cy="64" r="27" fill="#ff7a3d"/>
+    <circle cx="220" cy="64" r="34" fill="#8b5cf6" opacity="0.22"/><circle cx="220" cy="64" r="27" fill="#8b5cf6"/>
+    <circle cx="374" cy="64" r="34" fill="#14b8c8" opacity="0.22"/><circle cx="374" cy="64" r="27" fill="#14b8c8"/>
+    <text class="label" x="66" y="18">Daily</text>
+    <text class="label" x="220" y="18">Endless</text>
+    <text class="label" x="374" y="18">More games</text>
+    <circle cx="220" cy="204" r="62" fill="#5c6bf0" opacity="0.22"/>
+    <circle cx="220" cy="204" r="52" fill="#5c6bf0"/>
+    <path d="M210 178 L236 193 L210 208 Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+    <text class="play-label" x="220" y="236">Play</text>
+  </svg>
+
+  <p class="soon"><span class="pill">COMING SOON ON GOOGLE PLAY</span></p>
+
+  <div class="cast" aria-hidden="true">
+    <img src="img/avatars/fox.png" alt=""><img src="img/avatars/panda.png" alt=""><img src="img/avatars/bunny.png" alt="">
+    <img src="img/avatars/owl.png" alt=""><img src="img/avatars/robot.png" alt=""><img src="img/avatars/frog.png" alt="">
+    <img src="img/avatars/lion.png" alt="">
+  </div>
 </main>
-<footer>© 2026 Nodely · <a href="mailto:braileanuolimpiu@gmail.com">Contact</a></footer>
+
+<section class="features">
+  <div class="feature" style="color:#ff7a3d"><div class="dot"></div><h3>A new puzzle every day</h3><p>The Daily: the same board for every player, easy on Monday, a nightmare by Sunday.</p></div>
+  <div class="feature" style="color:#8b5cf6"><div class="dot"></div><h3>Endless and Blitz</h3><p>Board after board on three hearts, or as many as you can in two minutes.</p></div>
+  <div class="feature" style="color:#14b8c8"><div class="dot"></div><h3>Friends and Duels</h3><p>Race a friend on the same board and climb the weekly leagues together.</p></div>
+  <div class="feature" style="color:#ffb020"><div class="dot"></div><h3>Themes to collect</h3><p>Neon, ocean, winter and more: earn them, win them from Season chests, wear them.</p></div>
+</section>
+
+<footer>
+  <div class="links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="data-deletion.html">Delete your data</a></div>
+  <p>© 2026 Nodely · <a href="mailto:braileanuolimpiu@gmail.com">Contact</a></p>
+</footer>
 </body>
 </html>
