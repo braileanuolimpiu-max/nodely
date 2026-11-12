@@ -110,7 +110,7 @@
         body: JSON.stringify({ email: email, consent: true, website: f.website.value,
           locale: (navigator.language || 'en').slice(0, 10), source: 'site' })
       }).then(function (r) {
-        if (r.ok) { f.reset(); say("Thanks! We'll email you once, when Nodely is out."); }
+        if (r.ok) { f.reset(); say('Almost done! Check your inbox and tap the link to confirm.'); }
         else if (r.status === 429) say('Too many tries. Wait a minute and try again.', true);
         else say("That didn't work. Check the email and try again.", true);
       }).catch(function () { say("Couldn't reach the server. Try again later.", true); })
