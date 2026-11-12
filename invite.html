@@ -58,8 +58,15 @@
   (function () {
     var langs = (navigator.languages || [navigator.language || 'en']);
     var T = null;
+    var alias = { iw: 'he', tl: 'fil', in: 'id' };
+    var codeOf = function (l) {
+      l = String(l).toLowerCase();
+      if (l.indexOf('fil') === 0) return 'fil';
+      var c = l.slice(0, 2);
+      return alias[c] || c;
+    };
     for (var i = 0; i < langs.length && !T; i++) {
-      T = NODELY_INVITE_I18N[String(langs[i]).slice(0, 2).toLowerCase()];
+      T = NODELY_INVITE_I18N[codeOf(langs[i])];
     }
     T = T || NODELY_INVITE_I18N.en;
     var set = function (id, v, html) { var e = document.getElementById(id); if (e && v) { if (html) e.innerHTML = v; else e.textContent = v; } };
@@ -67,9 +74,9 @@
     set('s1', T.s1); set('s2', T.s2, true); set('s3', T.s3); set('manual', T.m);
     set('lf', T.f); set('ly', T.y);
     document.title = T.t + ' · Nodely';
-    var code2 = String(langs[0] || 'en').slice(0, 2).toLowerCase();
+    var code2 = codeOf(langs[0] || 'en');
     document.documentElement.lang = NODELY_INVITE_I18N[code2] ? code2 : 'en';
-    if (code2 === 'ar') document.documentElement.dir = 'rtl';
+    if (['ar', 'fa', 'he', 'ur'].indexOf(code2) >= 0) document.documentElement.dir = 'rtl';
   })();
 </script>
 <script>

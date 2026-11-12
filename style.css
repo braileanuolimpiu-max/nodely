@@ -262,3 +262,9 @@ ol.steps li::before {
 .notify-msg.bad { color: #e5484d; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 @media (max-width: 420px) { .notify-row { flex-direction: column; } }
+
+/* Right-to-left languages (Arabic, Persian, Hebrew, Urdu): steps mirror. */
+[dir="rtl"] ol.steps { text-align: right; }
+[dir="rtl"] ol.steps::before { left: auto; right: 17px; }
+[dir="rtl"] ol.steps li { padding: 10px 56px 10px 0; }
+[dir="rtl"] ol.steps li::before { left: auto; right: 0; }
