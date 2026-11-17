@@ -57,6 +57,7 @@
     <text class="play-label" x="220" y="236">Play</text>
   </svg>
 
+  <!--PRELAUNCH-->
   <p class="soon"><span class="pill">COMING SOON ON GOOGLE PLAY</span></p>
 
   <!-- "Tell me at launch": hidden until the public API address is set below. -->
@@ -70,6 +71,11 @@
     <label class="notify-consent"><input type="checkbox" id="notify-ok"><span>I agree to get launch news from Nodely by email. I can unsubscribe with one click. See the <a href="privacy.html">Privacy Policy</a>.</span></label>
     <p class="notify-msg" id="notify-msg" role="status"></p>
   </form>
+  <!--/PRELAUNCH-->
+  <!--LIVE
+  <p class="soon"><span class="pill">OUT NOW · FREE ON GOOGLE PLAY</span></p>
+  <p class="get"><a class="btn" href="https://play.google.com/store/apps/details?id=com.sugarsoftware.link">Get it on Google Play</a></p>
+  LIVE-->
 
   <div class="cast" aria-hidden="true">
     <img src="img/avatars/fox.png" alt=""><img src="img/avatars/panda.png" alt=""><img src="img/avatars/bunny.png" alt="">
@@ -94,7 +100,7 @@
   var NODELY_API = '';
   (function () {
     var f = document.getElementById('notify');
-    if (!NODELY_API || !window.fetch) return;
+    if (!f || !NODELY_API || !window.fetch) return; // no form after launch
     f.hidden = false;
     var msg = document.getElementById('notify-msg');
     var say = function (t, bad) { msg.textContent = t; msg.className = 'notify-msg' + (bad ? ' bad' : ''); };

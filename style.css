@@ -161,6 +161,7 @@ main.hero { text-align: center; padding: 26px 8px 8px; background: transparent; 
 @media (max-width: 400px) { .board .label { font-size: 21px; } .board .play-label { font-size: 23px; } }
 .board .play-label { font: 700 20px "Fredoka", sans-serif; fill: #fff; text-anchor: middle; }
 .soon { margin: 22px 0 6px; }
+.get { margin: 14px 0 0; }
 
 .features {
   display: grid;
